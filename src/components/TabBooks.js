@@ -4,27 +4,6 @@ import {Tabs, Tab} from 'material-ui/Tabs'
 import SwipeableViews from 'react-swipeable-views'
 import ListBooks from './ListBooks'
 
-const styles = {
-    headline: {
-      fontSize: 24,
-      paddingTop: 16,
-      marginBottom: 12,
-      fontWeight: 400
-    },
-    
-    slide: {
-      padding: 10
-    },
-  
-    tab: {
-      backgroundColor: 'rgba(0, 0, 0, 0)'
-    },
-  
-    line: {
-      backgroundColor: 'rgb(255, 255, 255)'
-    }
-}
-
 class TabBooks extends Component {
 
     state = {
@@ -48,8 +27,8 @@ class TabBooks extends Component {
                         onChange={this.handleChange}
                         value={this.state.slideIndex}
                         className="list-books-title"
-                        tabItemContainerStyle={styles.tab}
-                        inkBarStyle={styles.line}
+                        tabItemContainerStyle={{ backgroundColor: 'rgba(0, 0, 0, 0)' }}
+                        inkBarStyle={{backgroundColor: 'rgb(255, 255, 255)'}}
                     >
                         <Tab label="Currently Reading" value={0} />
                         <Tab label="Want to Read" value={1} />
@@ -59,14 +38,26 @@ class TabBooks extends Component {
                         index={this.state.slideIndex}
                         onChangeIndex={this.handleChange}
                     >
-                        <div style={styles.slide}>
-                            <ListBooks books={this.props.books.filter((book) => book.shelf === 'currentlyReading')} title="Currently Reading" />
+                        <div style={{padding: 10}}>
+                            <ListBooks 
+                                books={this.props.books.filter((book) => book.shelf === 'currentlyReading')} 
+                                title="Currently Reading"
+                                OnSelectChangeBook={this.props.OnSelectChangeBook} 
+                            />
                         </div>
-                        <div style={styles.slide}>
-                            <ListBooks books={this.props.books.filter((book) => book.shelf === 'wantToRead')} title="Want to Read" />
+                        <div style={{padding: 10}}>
+                            <ListBooks 
+                                books={this.props.books.filter((book) => book.shelf === 'wantToRead')} 
+                                title="Want to Read"
+                                OnSelectChangeBook={this.props.OnSelectChangeBook} 
+                            />
                         </div>
-                        <div style={styles.slide}>
-                            <ListBooks books={this.props.books.filter((book) => book.shelf === 'read')} title="Read"/>
+                        <div style={{padding: 10}}>
+                            <ListBooks 
+                                books={this.props.books.filter((book) => book.shelf === 'read')} 
+                                title="Read"
+                                OnSelectChangeBook={this.props.OnSelectChangeBook} 
+                            />
                         </div>
                     </SwipeableViews>
                 </div>

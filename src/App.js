@@ -13,7 +13,15 @@ class BooksApp extends React.Component {
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({ books })
-      console.log(books)
+    })
+  }
+
+  OnSelectChangeBook = (value, book) => {
+    book.shelf = value
+    let newBooks = this.state.books.filter(b => b.id !== book.id);
+    newBooks.push(book)
+    BooksAPI.update(book, value).then(() => {
+      this.setState({ books: newBooks })
     })
   }
 
@@ -21,10 +29,16 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <Route exact path="/" render={() => (
-          <TabBooks books={this.state.books} />
+          <TabBooks books={this.state.books} OnSelectChangeBook={(value, book) => {
+              this.OnSelectChangeBook(value, book)
+            }} 
+          />
         )} />
-        <Route path="/search" render={({ history }) => (
-          <AddBookShelf books={this.state.books}/>
+        <Route path="/search" render={() => (
+          <AddBookShelf OnSelectChangeBook={(value, book) => {
+              this.OnSelectChangeBook(value, book)
+            }}
+          />
         )} />
       </div>
     )
