@@ -5,7 +5,7 @@ import TabBooks from './books/TabBooks'
 import * as BooksAPI from '../api/BooksAPI'
 import '../style/App.css'
 
-class BooksApp extends React.Component {
+class App extends React.Component {
   state = {
     books: []
   }
@@ -45,4 +45,4 @@ class BooksApp extends React.Component {
   }
 }
 
-export default BooksApp
+export default App
