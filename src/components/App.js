@@ -1,9 +1,9 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import AddBookShelf from './components/AddBookShelf'
-import TabBooks from './components/TabBooks'
-import * as BooksAPI from './api/BooksAPI'
-import './style/App.css'
+import AddBookShelf from './books/AddBookShelf'
+import TabBooks from './books/TabBooks'
+import * as BooksAPI from '../api/BooksAPI'
+import '../style/App.css'
 
 class BooksApp extends React.Component {
   state = {
