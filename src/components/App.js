@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import AddBookShelf from './books/AddBookShelf'
 import TabBooks from './books/TabBooks'
 import * as BooksAPI from '../api/BooksAPI'
 import '../style/App.css'
 
-class App extends React.Component {
-  state = {
-    books: []
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      books: []
+    }
+    this.OnSelectChangeBook = this.OnSelectChangeBook.bind(this)
   }
 
   componentDidMount() {
@@ -44,5 +48,9 @@ class App extends React.Component {
     )
   }
 }
+
+App.defaultProps = {
+  books: []
+};
 
 export default App
