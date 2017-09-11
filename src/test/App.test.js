@@ -1,16 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import App from '../components/App'
+import { shallow } from 'enzyme'
 
-/** 
- This course is not designed to teach Test Driven Development. 
- Feel free to use this file to test your application, but it 
- is not required.
-**/
+global.localStorage = {
+  token: Math.random().toString(36).substr(-8)
+}
 
 it('renders without crashing', () => {
-  const div = document.createElement('div')
-  ReactDOM.render(<App />, div)
+  shallow(<App />)
 })
 
 
