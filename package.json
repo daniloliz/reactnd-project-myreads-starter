@@ -1,21 +1,31 @@
 {
   "dependencies": {
-    "enzyme": "^2.9.1",
     "material-ui": "^0.19.1",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router-dom": "^4.2.2",
-    "react-swipeable-views": "^0.12.8",
-    "react-test-renderer": "^15.6.1"
+    "react-swipeable-views": "^0.12.8"
   },
   "devDependencies": {
-    "react-scripts": "0.9.5"
+    "enzyme": "^2.9.1",
+    "react-router-test-context": "^0.1.0",
+    "react-scripts": "0.9.5",
+    "react-test-renderer": "^15.6.1",
+    "sinon": "^1.17.7",
+    "sinon-spy-react": "^2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "coverage": "react-scripts test --env=jsdom --coverage"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js"
+    ]
   }
 }
