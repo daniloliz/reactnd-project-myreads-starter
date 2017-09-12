@@ -5,9 +5,11 @@ import SwipeableViews from 'react-swipeable-views'
 import ListBooks from './ListBooks'
 
 class TabBooks extends Component {
-
-    state = {
-        slideIndex: 0
+    constructor(props) {
+        super(props)
+        this.state = {
+            slideIndex: 0
+        }
     }
 
     handleChange = (value) => {
@@ -40,21 +42,21 @@ class TabBooks extends Component {
                     >
                         <div style={{padding: 10}}>
                             <ListBooks 
-                                books={this.props.books.filter((book) => book.shelf === 'currentlyReading')} 
+                                books={this.props.books && this.props.books.filter((book) => book.shelf === 'currentlyReading')} 
                                 title="Currently Reading"
                                 OnSelectChangeBook={this.props.OnSelectChangeBook} 
                             />
                         </div>
                         <div style={{padding: 10}}>
                             <ListBooks 
-                                books={this.props.books.filter((book) => book.shelf === 'wantToRead')} 
+                                books={this.props.books && this.props.books.filter((book) => book.shelf === 'wantToRead')} 
                                 title="Want to Read"
                                 OnSelectChangeBook={this.props.OnSelectChangeBook} 
                             />
                         </div>
                         <div style={{padding: 10}}>
                             <ListBooks 
-                                books={this.props.books.filter((book) => book.shelf === 'read')} 
+                                books={this.props.books && this.props.books.filter((book) => book.shelf === 'read')} 
                                 title="Read"
                                 OnSelectChangeBook={this.props.OnSelectChangeBook} 
                             />
@@ -68,5 +70,9 @@ class TabBooks extends Component {
         )
     }
 }
+
+TabBooks.defaultProps = {
+    slideIndex: 0
+};
 
 export default TabBooks

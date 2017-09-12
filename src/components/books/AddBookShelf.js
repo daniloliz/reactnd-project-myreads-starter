@@ -4,9 +4,12 @@ import ListBooks from './ListBooks'
 import * as BooksAPI from '../../api/BooksAPI'
 
 class AddBookShelf extends Component {
-
-    state = {
-        books: []
+    constructor(props) {
+        super(props)
+        this.state = {
+            books: []
+        }
+        this.searchBooks = this.searchBooks.bind(this)
     }
     
     searchBooks = (query) => {
@@ -45,5 +48,9 @@ class AddBookShelf extends Component {
         )
     }
 }
+
+AddBookShelf.defaultProps = {
+    books: []
+};
 
 export default AddBookShelf
