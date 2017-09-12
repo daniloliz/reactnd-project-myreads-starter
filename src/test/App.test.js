@@ -1,17 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { MemoryRouter as Router, withRouter } from 'react-router'
 import createRouterContext from 'react-router-test-context'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import App from '../components/App'
-import { shallow, mount, Select } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import sinon from 'sinon';
+import sinon from 'sinon'
 
-let wrapper, context;
+let wrapper, context
+
 const props = {
   node: document.querySelector('select'),
-};
+}
 
 beforeEach(() => {
   let context = createRouterContext()
@@ -47,15 +46,27 @@ it('list one book with id and shelf', () => {
   expect(wrapper.find("li").length).toBe(1);
 })
 
-it('list one book in read shelf and alter for whant to read', () => {
+it('list one book on read shelf and alter for whant to read', () => {
   expect(wrapper.state().books.length).toBe(0);
   let book = { id: 1, shelf: 'read' }
   wrapper.setState({ books: [ book ] })
   expect(wrapper.find("li").length).toBe(1);
 
-  // alter shelf
+  // alter shelf - for to read
   wrapper.find('select').node.options[3].selected = true;
   
   expect(wrapper.find('select').node.options[3].selected).toBe(true);
   expect(wrapper.find('select').node.options[0].selected).toBe(false);
 })
+
+it('call onSelectChangeBook in TabBooks component, when alter shelf of book', () => {
+  
+  let book = { id: 1, shelf: 'read' }
+  wrapper.setState({ books: [ book ] })
+  
+  wrapper.find('TabBooks').find('select').node.options[2].selected = true
+  
+  let spy = sinon.spy(wrapper.instance(), "OnSelectChangeBook");
+  expect(spy).calledOnce
+})
+
