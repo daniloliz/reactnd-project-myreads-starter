@@ -8,6 +8,8 @@ To get started developing right away:
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
+* run tests `npm test`
+* code coverage report `npm run coverage`
 
 ## What You're Getting
 ```bash
@@ -31,7 +33,10 @@ To get started developing right away:
     ├── style
         └── App.css # Styles for your app. Feel free to customize this as you desire.
     ├── test
-        └── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
+        ├── AddBooksShelf.test.js # Used for testing component.
+        ├── App.test.js # Used for testing component.
+        ├── ListBooks.test.js # Used for testing component.
+        └── TabBooks.test.js # Used for testing component.
     ├── icons # Helpful images for your app. Use at your discretion.
     │   ├── add.svg
     │   ├── arrow-back.svg
