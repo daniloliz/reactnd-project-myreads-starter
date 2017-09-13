@@ -3,22 +3,30 @@ import { Link } from 'react-router-dom'
 import ListBooks from './ListBooks'
 import * as BooksAPI from '../../api/BooksAPI'
 
+/**
+ * @description AddBookShelf component
+ * @constructor
+ */
 class AddBookShelf extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             books: []
-        }
-        this.searchBooks = this.searchBooks.bind(this)
+        };
+        this.searchBooks = this.searchBooks.bind(this);
     }
     
+    /**
+     * @description search the books in server db and update a new book list in state
+     * @param {string} query
+     */
     searchBooks = (query) => {
         if(!query) {
-            this.setState({ books: [] })
+            this.setState({ books: [] });
         } else {
             BooksAPI.search(query).then((books) => {
-                this.setState({ books })
-            })
+                this.setState({ books });
+            });
         }
     }
 
@@ -53,4 +61,4 @@ AddBookShelf.defaultProps = {
     books: []
 };
 
-export default AddBookShelf
+export default AddBookShelf;

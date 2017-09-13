@@ -4,18 +4,26 @@ import {Tabs, Tab} from 'material-ui/Tabs'
 import SwipeableViews from 'react-swipeable-views'
 import ListBooks from './ListBooks'
 
+/**
+ * @description TabBooks component
+ * @constructor
+ */
 class TabBooks extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             slideIndex: 0
-        }
+        };
     }
 
+    /**
+     * @description set a new slideIndex value on state
+     * @param {number} value
+     */
     handleChange = (value) => {
         this.setState({
             slideIndex: value
-        })
+        });
     }
 
     render() {
@@ -75,4 +83,4 @@ TabBooks.defaultProps = {
     slideIndex: 0
 };
 
-export default TabBooks
+export default TabBooks;

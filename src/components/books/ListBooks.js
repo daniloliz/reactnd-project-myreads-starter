@@ -1,11 +1,19 @@
 import React, { Component } from 'react'
 
+/**
+ * @description ListBooks component
+ */
 class ListBooks extends Component {
-
+    
+    /**
+     * @description call OnSelectChangeBook of properties for update the shelf of book
+     * @param {object} e //event
+     * @param {object} book
+     */
     selectChangeBox = (e, book) => {
         e.preventDefault();
         if(this.props.OnSelectChangeBook)
-            this.props.OnSelectChangeBook(e.target.value, book)
+            this.props.OnSelectChangeBook(e.target.value, book);
     }
 
     render() {
@@ -48,4 +56,4 @@ class ListBooks extends Component {
     }
 }
 
-export default ListBooks
+export default ListBooks;

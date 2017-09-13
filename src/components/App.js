@@ -5,28 +5,37 @@ import TabBooks from './books/TabBooks'
 import * as BooksAPI from '../api/BooksAPI'
 import '../style/App.css'
 
+/**
+ * @description App Component
+ * @constructor
+ */
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       books: []
-    }
-    this.OnSelectChangeBook = this.OnSelectChangeBook.bind(this)
+    };
+    this.OnSelectChangeBook = this.OnSelectChangeBook.bind(this);
   }
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      this.setState({ books })
-    })
+      this.setState({ books });
+    });
   }
 
+  /**
+   * @description update the shelf of book in server db
+   * @param {string} value
+   * @param {object} book
+   */
   OnSelectChangeBook = (value, book) => {
-    book.shelf = value
+    book.shelf = value;
     let newBooks = this.state.books.filter(b => b.id !== book.id);
-    newBooks.push(book)
+    newBooks.push(book);
     BooksAPI.update(book, value).then(() => {
-      this.setState({ books: newBooks })
-    })
+      this.setState({ books: newBooks });
+    });
   }
 
   render() {
@@ -53,4 +62,4 @@ App.defaultProps = {
   books: []
 };
 
-export default App
+export default App;
