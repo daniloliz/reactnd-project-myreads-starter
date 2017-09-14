@@ -51,7 +51,7 @@ class App extends Component {
           />
         )} />
         <Route path="/search" render={() => (
-          <AddBookShelf OnSelectChangeBook={(value, book) => {
+          <AddBookShelf books={this.state.books.filter(item => item.shelf !== 'none')} OnSelectChangeBook={(value, book) => {
               this.OnSelectChangeBook(value, book)
             }}
           />

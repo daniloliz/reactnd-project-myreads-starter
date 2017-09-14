@@ -34,7 +34,7 @@ class ListBooks extends Component {
                                     <div className="book-shelf-changer">
                                         <select name="select" value={book.shelf} onChange={(event) => this.selectChangeBox(event, book)}>
                                             <option style={{fontWeight: 'bold'}}>Move to...</option>
-                                            <option value="none" disabled={book.shelf === 'none'}>Remove to shelf</option>
+                                            <option value="none" disabled={!book.shelf || book.shelf === 'none'}>Remove to shelf</option>
                                             <option value="currentlyReading">Currently Reading</option>
                                             <option value="wantToRead">Want to Read</option>
                                             <option value="read">Read</option>

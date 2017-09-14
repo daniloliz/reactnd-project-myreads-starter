@@ -27,6 +27,11 @@ class AddBookShelf extends Component {
             this.setState({ books: [] });
         } else {
             BooksAPI.search(query).then((books) => {
+                if(this.props.books) {
+                    this.props.books.forEach( (book) => {
+                        books = books.filter(item => item.id !== book.id);
+                    } );
+                }
                 this.setState({ books });
             });
         }
