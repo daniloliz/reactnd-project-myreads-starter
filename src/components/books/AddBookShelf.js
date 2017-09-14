@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ListBooks from './ListBooks'
 import * as BooksAPI from '../../api/BooksAPI'
+import { debounce } from 'lodash'
+import PropTypes from 'prop-types'
 
 /**
  * @description AddBookShelf component
@@ -13,7 +15,7 @@ class AddBookShelf extends Component {
         this.state = {
             books: []
         };
-        this.searchBooks = this.searchBooks.bind(this);
+        this.searchBooks = debounce(this.searchBooks.bind(this), 500);
     }
     
     /**
@@ -57,8 +59,8 @@ class AddBookShelf extends Component {
     }
 }
 
-AddBookShelf.defaultProps = {
-    books: []
+AddBookShelf.propTypes = {
+    books: PropTypes.array
 };
 
 export default AddBookShelf;
