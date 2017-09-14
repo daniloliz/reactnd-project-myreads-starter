@@ -32,7 +32,7 @@ class ListBooks extends Component {
                                         style={{ width: 128, height: 193, backgroundImage: book.imageLinks && book.imageLinks.smallThumbnail && `url(${book.imageLinks.smallThumbnail})` }}
                                     ></div>
                                     <div className="book-shelf-changer">
-                                        <select name="select" value="value" onChange={(event) => this.selectChangeBox(event, book)}>
+                                        <select name="select" value={book.shelf} onChange={(event) => this.selectChangeBox(event, book)}>
                                             <option style={{fontWeight: 'bold'}}>Move to...</option>
                                             <option value="none" disabled={book.shelf === 'none'}>Remove to shelf</option>
                                             <option value="currentlyReading">Currently Reading</option>
