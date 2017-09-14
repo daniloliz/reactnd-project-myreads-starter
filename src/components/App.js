@@ -31,12 +31,14 @@ class App extends Component {
    * @param {object} book
    */
   OnSelectChangeBook = (value, book) => {
-    book.shelf = value;
-    BooksAPI.update(book, value).then(() => {
-      this.setState(prevState => ({ 
-        books: prevState.books.filter(b => b.id !== book.id).concat(book)
-      }));
-    });
+    if(book.shelf !== value) {
+      book.shelf = value;
+      BooksAPI.update(book, value).then(() => {
+        this.setState(prevState => ({ 
+          books: prevState.books.filter(b => b.id !== book.id).concat(book)
+        }));
+      });
+    }
   }
 
   render() {
