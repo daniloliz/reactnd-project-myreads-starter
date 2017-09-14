@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import AddBookShelf from './books/AddBookShelf'
 import TabBooks from './books/TabBooks'
 import * as BooksAPI from '../api/BooksAPI'
@@ -31,10 +32,10 @@ class App extends Component {
    */
   OnSelectChangeBook = (value, book) => {
     book.shelf = value;
-    let newBooks = this.state.books.filter(b => b.id !== book.id);
-    newBooks.push(book);
     BooksAPI.update(book, value).then(() => {
-      this.setState({ books: newBooks });
+      this.setState(prevState => ({ 
+        books: prevState.books.filter(b => b.id !== book.id).concat(book)
+      }));
     });
   }
 
@@ -58,8 +59,8 @@ class App extends Component {
   }
 }
 
-App.defaultProps = {
-  books: []
+App.propTypes = {
+  books: PropTypes.array
 };
 
 export default App;

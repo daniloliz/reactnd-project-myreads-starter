@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import {Tabs, Tab} from 'material-ui/Tabs'
 import SwipeableViews from 'react-swipeable-views'
 import ListBooks from './ListBooks'
+import PropTypes from 'prop-types'
 
 /**
  * @description TabBooks component
@@ -27,6 +28,7 @@ class TabBooks extends Component {
     }
 
     render() {
+        const { books } = this.props;
         return (
             <div>
                 <div className="list-books">
@@ -50,21 +52,21 @@ class TabBooks extends Component {
                     >
                         <div style={{padding: 10}}>
                             <ListBooks 
-                                books={this.props.books && this.props.books.filter((book) => book.shelf === 'currentlyReading')} 
+                                books={books && books.filter((book) => book.shelf === 'currentlyReading')} 
                                 title="Currently Reading"
                                 OnSelectChangeBook={this.props.OnSelectChangeBook} 
                             />
                         </div>
                         <div style={{padding: 10}}>
                             <ListBooks 
-                                books={this.props.books && this.props.books.filter((book) => book.shelf === 'wantToRead')} 
+                                books={books && books.filter((book) => book.shelf === 'wantToRead')} 
                                 title="Want to Read"
                                 OnSelectChangeBook={this.props.OnSelectChangeBook} 
                             />
                         </div>
                         <div style={{padding: 10}}>
                             <ListBooks 
-                                books={this.props.books && this.props.books.filter((book) => book.shelf === 'read')} 
+                                books={books && books.filter((book) => book.shelf === 'read')} 
                                 title="Read"
                                 OnSelectChangeBook={this.props.OnSelectChangeBook} 
                             />
@@ -79,8 +81,8 @@ class TabBooks extends Component {
     }
 }
 
-TabBooks.defaultProps = {
-    slideIndex: 0
+TabBooks.propTypes = {
+    slideIndex: PropTypes.number
 };
 
 export default TabBooks;
